@@ -8,12 +8,15 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $aantal_aangepast = 0;
+
     $stmt = $conn->prepare("UPDATE messages SET inhoud='Testberichtje' WHERE id=4");
 
+    $stmt->execute();
     // zorg dat de database ge-update wordt
     // en getoond wordt hoeveel rijen aangepast zijn
     
-    echo $aantal_aangepast . " rijen aangepast...";
+    echo $stmt->rowCount() . " rijen aangepast...";
 }
 catch(PDOException $e)
 {
